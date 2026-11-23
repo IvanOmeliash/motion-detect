@@ -105,7 +105,7 @@ python scripts/calibrate.py --config configs/paths.yaml --checkpoint checkpoints
     --report results/calibration/postprocess_calibration.json
 ```
 
-Hard-negative review CSV schema (data-free, written by mining, filled by a human):
+Hard-negative review CSV schema:
 `rank, sample_id, decision, notes, score, rank_score, prob_max, area, inlier_ratio, clip_id, frame_index, rotor_zone_hit, rotor_zone_overlap_area_1280`
 with `decision ∈ {approve, reject}`; ranks 1..200 must each appear exactly once
 (strict validation in `read_review_decisions`). Round 01 approved 57 / rejected 143.
@@ -115,7 +115,7 @@ see `src/motion_detect/export_coreml.py` (`export_tinyunet_coreml_fp16`, FP16 ML
 
 A thin end-to-end demo lives in `notebooks/demo.ipynb`.
 
-## Results (from notebook outputs only)
+## Results
 
 All numbers below are copied from the research notebook outputs
 (`docs/reports/*.json`); nothing is re-computed here. **The rows use different
@@ -146,10 +146,6 @@ The full val bbox threshold sweep (baseline model, val clips) is in
 - Size buckets on the test set (hard-negative model): far targets are
   essentially undetected (far: TP 0 / FN 0 — no GT objects in that bucket on
   those clips; mid: recall 0.0012; near: P 0.315 / R 0.215).
-
-### TODO
-
-- F1 0.872 from CV — source report not found; do not publish until a reproducible report exists.
 
 ## Data & checkpoints
 
