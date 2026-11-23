@@ -1,0 +1,24 @@
+# data and artifacts
+data/
+checkpoints/
+results/
+*.pth
+*.zip
+*.mov
+*.mp4
+*.npz
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# local config with real paths (use configs/paths.example.yaml as template)
+configs/paths.yaml
+
+# notebooks
+.ipynb_checkpoints/
+
+# scratch extraction from the source notebooks
+.nb_extract/

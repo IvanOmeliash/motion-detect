@@ -1,0 +1,24 @@
+{
+  "source": "best_13.ipynb cell 65 / cells 10-11 outputs (training logs and checkpoint metadata)",
+  "metric": "pixel-level validation F1 at threshold 0.5 on the val split (300 samples), masks from GT bboxes",
+  "runs": {
+    "baseline": {
+      "checkpoint": "checkpoints/best_unet.pth",
+      "epoch": 23,
+      "val_f1": 0.6810649627263046,
+      "target_source": "gt_bbox_mask"
+    },
+    "hard_negative_round01": {
+      "checkpoint": "checkpoints/hard_negative_round01_20260731_095211/best_unet.pth",
+      "epoch": 25,
+      "val_f1": 0.6233259098813264,
+      "target_source": "gt_bbox_mask_with_ignore_band",
+      "train_groups": {"positive": 1754, "hard_negative": 57, "random_negative": 312}
+    }
+  },
+  "pixel_threshold_sweep_baseline_epoch23": {
+    "source": "best_13.ipynb cell 65 output",
+    "best_threshold": 0.70,
+    "best": {"precision": 0.6711382113821138, "recall": 0.6584356669270011, "iou": 0.4978202148376154, "f1": 0.6647262600759946}
+  }
+}

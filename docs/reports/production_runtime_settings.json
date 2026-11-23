@@ -1,0 +1,35 @@
+{
+  "source": "best_15.ipynb cell 9 (PRODUCTION_RUNTIME_SETTINGS, written to hard_negative_round01_runtime_settings.json)",
+  "status": "production_candidate",
+  "checkpoint": "checkpoints/hard_negative_round01_20260731_095211/best_unet.pth",
+  "hard_negative_round": 1,
+  "unet_threshold": 0.95,
+  "threshold_status": "provisional_pending_calibration",
+  "apply_validity_mask": true,
+  "apply_platform_suppression": false,
+  "hard_negative_replacement_ready": true,
+  "compensation_step": 1,
+  "return_size": [1280, 720],
+  "detection_params": {
+    "diff_threshold": 24,
+    "area_min": 12,
+    "area_max": 856,
+    "bbox_padding": 4,
+    "max_age": 19,
+    "min_hits": 5,
+    "iou_thresh": 0.128,
+    "max_dist": 52,
+    "max_corners": 343,
+    "lk_winsize": 17,
+    "inlier_thresh": 0.578,
+    "apply_platform_suppression": false
+  },
+  "evaluation_summary": {
+    "source": "best_13.ipynb cell 13 output (test clips, hard-negative model, UNet threshold 0.95)",
+    "clip_set": "test clips [2, 6, 7, 8, 9, 15, 16, 18, 35, 41]",
+    "iou_threshold": 0.20,
+    "platform_on": {"precision": 0.31271514629948366, "recall": 0.18850917579923482, "f1": 0.23522272120402962, "TP": 2907, "FP": 6389, "FN": 12514},
+    "platform_off": {"precision": 0.3150450064294899, "recall": 0.19064911484339536, "f1": 0.2375469640043631, "TP": 2940, "FP": 6392, "FN": 12481},
+    "decision": "platform suppression disabled after numerical and visual audit"
+  }
+}

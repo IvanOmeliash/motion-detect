@@ -1,0 +1,16 @@
+{
+  "source": "best_13.ipynb cell 22 output (approval of round_01)",
+  "round": 1,
+  "review_csv_schema": [
+    "rank", "sample_id", "decision", "notes", "score", "rank_score",
+    "prob_max", "area", "inlier_ratio", "clip_id", "frame_index",
+    "rotor_zone_hit", "rotor_zone_overlap_area_1280"
+  ],
+  "reviewed_ranks": "1-200",
+  "reviewed": 200,
+  "approved": 57,
+  "rejected": 143,
+  "unreviewed_candidates_kept_pending": 213,
+  "copied_into_train": 57,
+  "train_group_counts_after_approval": {"hard_negative": 57}
+}

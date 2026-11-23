@@ -1,0 +1,9 @@
+# Copy to configs/paths.yaml (git-ignored) and fill in real locations.
+# All scripts accept --config for this file and --config-default for
+# configs/default.yaml, or a single merged YAML.
+paths:
+  videos_dir: /data/Videos                 # folder (or ZIP) with Clip_*.mov
+  annotations_dir: /data/Video_Annotation  # folder (or ZIP) with *.txt GT
+  dataset_root: data/dataset_gt            # generated train/ val/ samples
+  checkpoints_dir: checkpoints             # best_unet.pth etc.
+  results_dir: results                     # reports, calibration, renders

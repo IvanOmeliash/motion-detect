@@ -1,0 +1,11 @@
+numpy
+opencv-python
+torch
+scipy
+tqdm
+pyyaml
+pillow
+# optional, macOS only (Core ML export / prediction):
+# coremltools
+# test:
+# pytest

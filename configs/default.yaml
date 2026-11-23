@@ -1,0 +1,96 @@
+# Default configuration for motion-detect.
+# Values reproduce the research notebooks (best_13 / best_15) exactly.
+# Paths live in a separate file: copy configs/paths.example.yaml to
+# configs/paths.yaml and fill in your locations.
+
+processing:
+  max_width: 640            # processing width; height scales proportionally
+  compensation_step: 1      # pipeline step; 1 = [Warp(t-2), Warp(t-1), I_t], required by the checkpoints
+  return_size: [1280, 720]  # coordinate system of returned bboxes / metrics
+  compensation:             # classical compensation params (grid GFTT -> FB LK -> RANSAC -> warp)
+    max_width: 640
+    redetect_interval: 8
+    request_decoder_scaling: true
+    preprocess_gray_first: true
+    grid_rows: 10
+    grid_cols: 10
+    points_per_cell: 3
+    quality_level: 0.01
+    min_distance: 7
+    block_size: 7
+    lk_win_size: 11
+    lk_max_level: 2
+    min_eig_threshold: 0.0001
+    fb_threshold: 0.75
+    min_correspondences: 50
+    motion_model: homography
+    ransac_threshold: 2.0
+    min_ransac_inliers: 25
+    min_inlier_ratio: 0.50
+    low_confidence_inlier_ratio: 0.65
+    min_model_scale: 0.50
+    max_model_scale: 2.00
+
+detection:
+  # Production candidate params (best_15 PRODUCTION_DETECTION_PARAMS).
+  # Coordinates are in the 1280x720 reference frame; they are scaled to the
+  # processing frame at runtime.
+  params:
+    diff_threshold: 24        # legacy absdiff fallback only
+    area_min: 12
+    area_max: 856
+    bbox_padding: 4
+    max_age: 19
+    min_hits: 5
+    iou_thresh: 0.128
+    max_dist: 52
+    max_corners: 343          # legacy absdiff fallback only
+    lk_winsize: 17            # legacy absdiff fallback only
+    inlier_thresh: 0.578
+    apply_platform_suppression: false
+  unet_threshold: 0.95        # provisional pending calibration
+  bbox_iou_threshold: 0.20    # object-level matching IoU
+  pixel_threshold: 0.5        # pixel-level metric threshold
+  apply_validity_mask: true
+  apply_platform_suppression: false
+
+training:
+  epochs: 25
+  batch_size: 4
+  learning_rate: 0.001
+  seed: 42
+  train_crop_size: 256
+  group_ratios: { positive: 0.60, hard_negative: 0.25, random_negative: 0.15 }
+  pos_weight: 20.0
+  pos_weight_no_empty: 15.0
+  allow_train_without_empty: false
+  allow_train_without_hard_negatives: false
+  min_empty_fraction_warning: 0.05
+  ignore_band_px: 2
+  ignore_band_min_side: 6
+  # dataset generation / split
+  samples_per_clip: 60
+  stride: 5
+  split_seed: 42
+  train_clips_count: 35
+  val_clips_count: 5
+  num_clips: 50
+
+hard_negatives:
+  hard_negative_fraction: 0.20
+  hard_negative_review_count: 200
+  hard_negative_remine_every: 3
+  inlier_priority_boost: 1.0
+  inlier_margin_scale: 0.05
+
+calibration:
+  clip_ids: [2, 6, 7, 8, 9, 15, 16, 18, 35, 41]
+  unet_thresholds: [0.80, 0.85, 0.90, 0.93, 0.95, 0.97, 0.98]
+  area_min_values: [8, 12, 16]
+  area_max_values: [640, 856, 1100]
+  bbox_padding_values: [2, 4, 6]
+  precision_floor: 0.30
+
+evaluation:
+  val_clips: [3, 28, 38, 48, 50]
+  test_clips: [2, 6, 7, 8, 9, 15, 16, 18, 35, 41]
